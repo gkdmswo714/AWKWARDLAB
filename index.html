@@ -40,6 +40,7 @@
       .nav button { appearance:none; border:0; padding:2px 0; background:none; color:var(--ink); font:500 16px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing:-.035em; text-transform:none; cursor:pointer; }
       .nav button:hover, .nav button:focus-visible, .nav button.active { color:var(--orange); outline:none; }
       .nav button.active { text-decoration:none; }
+      .mobile-menu-toggle { display:none; appearance:none; min-width:62px; height:32px; padding:0 10px; border:1px solid var(--ink); background:transparent; color:var(--ink); font:700 11px/1 "SFMono-Regular",Consolas,monospace; text-transform:uppercase; cursor:pointer; }
       .info-panel { position:fixed; z-index:11; top:61px; left:28px; right:28px; display:grid; grid-template-columns:120px minmax(230px,.75fr) 1.25fr auto; gap:28px; min-height:230px; padding:26px 0 28px; border-bottom:1px solid var(--ink); background:var(--paper); transform:translateY(calc(-100% - 70px)); transition:transform .42s cubic-bezier(.22,.8,.22,1); }
       .info-panel.open { transform:translateY(0); box-shadow:0 24px 34px rgba(17,17,17,.07); }
       .panel-index { color:var(--orange); }
@@ -500,6 +501,84 @@
       @media (max-width:760px) { .route-people{width:100%}.route-field{margin:0 8px}.route-field .suggestion-card{padding:13px 11px}.route-field .suggestion-card strong{font-size:15px}.compare-interactive{grid-template-columns:1fr;gap:18px;width:100%}.index-label{align-self:auto;padding:0 0 12px;border-right:0;border-bottom:1px solid var(--ink)}.index-label br{display:none}.change-visual{gap:14px}.compare-people{gap:34vw;min-height:62px}.compare-interactive.revealed .compare-people{gap:50px}.score-track{gap:10px}.score-state{gap:6px}.score-state strong{font-size:2.7rem}.compare-reveal b{width:36px;height:36px}.record-people .frame-signal{padding:6px}.record-people .frame-signal span{font-size:8px} }
       @media (max-width:900px) { .nav{gap:22px}.cases-screen,.contact-screen{top:100px}.case-overlay{top:100px}.case-grid{grid-template-columns:repeat(3,minmax(240px,1fr));overflow-x:auto;padding:30px 2px 44px}.case-card-visual{min-height:220px}.contact-body{padding:28px 16px 42px}.contact-card{width:min(760px,96%)} }
       @media (max-width:760px) { .nav{gap:22px}.cases-screen,.contact-screen{top:96px;right:17px;left:17px;overflow-y:auto}.case-overlay{top:96px;right:17px;left:17px;padding:0}.cases-head,.contact-head{position:sticky;top:0;z-index:3;grid-template-columns:1fr auto;background:var(--paper)}.cases-head>.micro,.contact-head>.micro{display:none}.case-grid{grid-template-columns:1fr;overflow:visible;padding:18px 0 36px}.case-card{width:100%}.case-card:hover{transform:none;box-shadow:none}.case-card-visual{min-height:240px}.case-detail{width:100%;height:100%;border-top:0;border-bottom:0}.case-detail-head{grid-template-columns:1fr auto;padding:0 12px}.case-detail-head>.micro{display:none}.case-detail-body{min-height:360px}.case-detail-foot{grid-template-columns:1fr}.case-detail-foot>div{min-height:58px;border-right:0;border-bottom:1px solid var(--line)}.case-detail-foot>div:last-child{border-bottom:0}.elevator-scene{width:84%;height:62%}.same-path{width:180%;transform:scale(.55);transform-origin:left center}.narrow-map{width:190%;transform:scale(.5);transform-origin:left center}.record-people .frame-signal{min-width:130px}.record-people .frame-signal strong{font-size:13px}.contact-body{display:block;min-height:0;padding:20px 0 36px}.contact-card{width:100%}.contact-card-head{grid-template-columns:1fr;gap:20px;padding:20px 16px}.contact-card-head h3{font-size:2.5rem}.contact-connection{width:150px}.contact-row-two{grid-template-columns:1fr}.contact-row-two .contact-field+.contact-field{border-top:1px solid var(--ink);border-left:0}.contact-options{grid-template-columns:1fr}.contact-field,.contact-inquiry{padding:15px 14px}.contact-form-footer{grid-template-columns:1fr 1fr}.contact-submit{grid-column:1 / -1;min-height:58px}.contact-success{padding:26px 18px}.contact-success h3{font-size:3.1rem} }
+      @media (min-width:761px) and (max-width:1024px) {
+        .page{padding:18px 22px 24px}
+        .topbar{grid-template-columns:auto 1fr;gap:24px}
+        .nav{justify-content:flex-end;gap:24px;overflow:visible;padding:0}
+        .info-panel,.about-screen,.method-screen,.cases-screen,.contact-screen,.case-overlay{top:59px;left:22px;right:22px}
+        .case-grid{display:flex;align-items:stretch;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px 2px 42px;scrollbar-width:none}
+        .case-grid::-webkit-scrollbar{display:none}
+        .case-card{flex:0 0 42vw;max-width:390px;scroll-snap-align:start}
+        .contact-body{padding:32px 18px 46px}
+        .contact-card{width:min(760px,96%)}
+      }
+      @media (max-width:760px) {
+        .page{padding:14px 14px 18px}
+        .topbar{z-index:15;grid-template-columns:1fr auto;gap:12px;min-height:48px;padding-bottom:10px}
+        .brand{font-size:17px;gap:9px}
+        .brand .identity-mark{width:52px}
+        .mobile-menu-toggle{display:block;justify-self:end}
+        .mobile-menu-toggle[aria-expanded="true"]{background:var(--ink);color:var(--paper)}
+        .nav{position:fixed;z-index:14;top:62px;left:14px;right:14px;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;border:1px solid var(--ink);background:var(--paper);opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .24s ease,transform .24s ease,visibility 0s linear .24s;overflow:hidden}
+        .page.nav-open .nav{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+        .nav button{min-height:52px;padding:0 14px;border-bottom:1px solid var(--ink);font:700 13px/1 "SFMono-Regular",Consolas,monospace;text-align:left;text-transform:uppercase}
+        .nav button:nth-child(odd){border-right:1px solid var(--ink)}
+        .nav button:nth-last-child(-n+2){border-bottom:0}
+        .page.nav-open .main,.page.nav-open .footer{opacity:.16;transition:opacity .24s ease}
+        .info-panel,.about-screen,.method-screen,.cases-screen,.contact-screen,.case-overlay{top:62px;left:14px;right:14px}
+        .info-panel{grid-template-columns:34px 1fr auto;gap:12px;max-height:calc(100svh - 76px)}
+        .main{display:flex;flex-direction:column;align-items:stretch;gap:28px;padding:34px 0 22px}
+        .eyebrow{font-size:9px}
+        h1{font-size:clamp(3.15rem,15.5vw,5.2rem);line-height:.88}
+        .lead{margin-top:22px;font-size:15px}
+        .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:25px}
+        .action{padding:13px 10px;font-size:10px}
+        .lab{min-height:330px}
+        .lab-head{font-size:9px}
+        .case{left:12px;top:50px}
+        .people{width:78%}
+        .person{width:38px;height:38px}
+        .index{right:12px;bottom:12px;width:156px}
+        .index strong{font-size:27px}
+        .footer{grid-template-columns:1fr auto;padding-top:11px;font-size:9px}
+        .footer div:nth-child(2){display:none}
+        .footer div:last-child{max-width:115px;text-align:right}
+        .about-intro{padding:16px 0}
+        .about-intro h2{font-size:2.45rem}
+        .about-trigger{grid-template-columns:20px 38px 1fr;gap:10px;min-height:68px}
+        .signal{transform:scale(.82);transform-origin:left center}
+        .about-answer-inner{padding:0 0 26px 68px}
+        .method-intro{min-height:calc(100svh - 62px)}
+        .method-landing-center{padding:26px 0}
+        .method-landing-center h2{font-size:clamp(4rem,23vw,6.5rem)}
+        .method-kicker{margin-top:22px}
+        .method-detail{overscroll-behavior:contain}
+        .method-overview{min-height:calc(100svh - 117px)}
+        .method-steps{padding:30px 0 22px}
+        .method-step{min-height:82px}
+        .stage-shell{width:92%;padding:24px 0 34px}
+        .stage-heading h3{font-size:clamp(2.15rem,10.5vw,3.7rem)}
+        .method-frame{min-height:320px}
+        .frame-canvas{min-height:215px}
+        .cases-shell{overflow:hidden}
+        .case-grid{display:flex;align-items:stretch;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:1px;padding:16px 1px 28px;scrollbar-width:none}
+        .case-grid::-webkit-scrollbar{display:none}
+        .case-card{flex:0 0 84vw;max-width:345px;width:auto;scroll-snap-align:start}
+        .case-card-visual{min-height:220px}
+        .case-card-info{min-height:138px}
+        .case-overlay{padding:0}
+        .case-detail-head h3{font-size:15px}
+        .case-detail-body{min-height:330px}
+        .case-detail-foot strong{font-size:14px}
+        .contact-body{padding:16px 0 28px}
+        .contact-card-head h3{font-size:clamp(2.15rem,11vw,3rem)}
+        .contact-card-head p{font-size:14px}
+        .contact-connection{width:130px}
+        .contact-options{grid-template-columns:1fr;gap:8px}
+        .contact-option{min-height:46px}
+        .contact-message{min-height:150px}
+        .contact-form-footer{grid-template-columns:1fr 1fr}
+      }
       @media (prefers-reduced-motion:reduce) { .case-detail.active,.case-detail.active .elevator-door,.case-detail.active .elevator-student,.case-detail.active .elevator-professor,.case-detail.active .elevator-alert,.case-detail.active .group-dot,.case-detail.active .thought,.case-detail.active .narrow-a,.case-detail.active .narrow-b,.case-detail.active .collision-mark{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important}.contact-connection i,.contact-connection b,.contact-success{transition-duration:.01ms!important} }
     </style>
   </head>
@@ -507,7 +586,8 @@
     <main class="page">
       <header class="topbar">
         <a class="brand" href="#" aria-label="AWKWARD LAB home"><span>AWKWARD LAB<sup>®</sup></span><span class="identity-mark" aria-hidden="true"><i></i><b></b><i></i></span></a>
-        <nav class="nav" aria-label="Primary navigation">
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+        <nav class="nav" id="primary-nav" aria-label="Primary navigation">
           <button type="button" data-section="about">About</button><button type="button" data-section="method">Method</button><button type="button" data-section="cases">Cases</button><button type="button" data-section="contact">Contact</button>
         </nav>
       </header>
@@ -650,7 +730,7 @@
       document.addEventListener('mousemove',detect); document.addEventListener('keydown',detect); document.addEventListener('touchstart',detect); detect();
       document.getElementById('scan').addEventListener('click',()=>{ notice.textContent='Analyzing… 87 / critical'; notice.classList.add('show'); setTimeout(()=>notice.textContent='Silence detected.',2200); });
       const sections={};
-      const page=document.querySelector('.page'), panel=document.getElementById('info-panel'), aboutScreen=document.getElementById('about-screen'), methodScreen=document.getElementById('method-screen'), methodDetail=document.getElementById('method-detail'), methodWorkspaceLabel=document.getElementById('method-workspace-label'), casesScreen=document.getElementById('cases-screen'), caseOverlay=document.getElementById('case-overlay'), contactScreen=document.getElementById('contact-screen'), contactForm=document.getElementById('contact-form'), contactReset=document.getElementById('contact-reset'), panelIndex=document.getElementById('panel-index'), panelTitle=document.getElementById('panel-title'), panelText=document.getElementById('panel-text'), panelDetails=document.getElementById('panel-details'), navButtons=[...document.querySelectorAll('.nav button')], aboutItems=[...document.querySelectorAll('.about-item')], methodSteps=[...document.querySelectorAll('.method-step')], methodStages=[...document.querySelectorAll('.method-stage')], caseCards=[...document.querySelectorAll('.case-card')], caseDetails=[...document.querySelectorAll('.case-detail')], compareInteractive=document.getElementById('compare-interactive'), compareReveal=document.getElementById('compare-reveal');
+      const page=document.querySelector('.page'), panel=document.getElementById('info-panel'), aboutScreen=document.getElementById('about-screen'), methodScreen=document.getElementById('method-screen'), methodDetail=document.getElementById('method-detail'), methodWorkspaceLabel=document.getElementById('method-workspace-label'), casesScreen=document.getElementById('cases-screen'), caseOverlay=document.getElementById('case-overlay'), contactScreen=document.getElementById('contact-screen'), contactForm=document.getElementById('contact-form'), contactReset=document.getElementById('contact-reset'), mobileMenuToggle=document.getElementById('mobile-menu-toggle'), panelIndex=document.getElementById('panel-index'), panelTitle=document.getElementById('panel-title'), panelText=document.getElementById('panel-text'), panelDetails=document.getElementById('panel-details'), navButtons=[...document.querySelectorAll('.nav button')], aboutItems=[...document.querySelectorAll('.about-item')], methodSteps=[...document.querySelectorAll('.method-step')], methodStages=[...document.querySelectorAll('.method-stage')], caseCards=[...document.querySelectorAll('.case-card')], caseDetails=[...document.querySelectorAll('.case-detail')], compareInteractive=document.getElementById('compare-interactive'), compareReveal=document.getElementById('compare-reveal');
       const methodLabels={record:'01 상황 기록 · RECORD',diagnose:'02 원인 분석 · DIAGNOSE',suggest:'03 행동 제안 · SUGGEST',compare:'04 결과 비교 · COMPARE'};
       function resetComparison(){compareInteractive.classList.remove('revealed');compareReveal.querySelector('span').textContent='Click';compareReveal.querySelector('b').textContent='→';compareReveal.setAttribute('aria-label','Reveal after result');}
       function selectMethodStep(key){methodSteps.forEach(step=>{const active=step.dataset.step===key;step.classList.toggle('active',active);step.setAttribute('aria-expanded',String(active));});methodStages.forEach(stage=>stage.classList.toggle('active',stage.dataset.stage===key));if(key==='compare')resetComparison();methodDetail.classList.toggle('stage-open',Boolean(key));methodWorkspaceLabel.textContent=key?methodLabels[key]:'ANALYSIS STAGES · 01—04';methodDetail.scrollTop=0;}
@@ -661,9 +741,11 @@
       function setContactCopy(type){const copy=inquiryCopy[type]||{label:'04 / Situation',placeholder:'어떤 일이 있었나요?'};document.getElementById('contact-message-label').textContent=copy.label;document.getElementById('contact-message').placeholder=copy.placeholder;}
       function updateContactProgress(){const fields=[contactForm.elements.name.value,contactForm.elements.email.value,contactForm.elements.inquiry.value,contactForm.elements.message.value];const filled=fields.filter(value=>value.trim()).length;contactScreen.style.setProperty('--contact-progress',String(Math.max(.18,filled/fields.length)));}
       function resetContact(){contactForm.reset();contactForm.removeAttribute('aria-hidden');contactForm.inert=false;contactScreen.classList.remove('submitted');contactScreen.style.setProperty('--contact-progress','.18');setContactCopy('');}
-      function closePanel(){ panel.classList.remove('open');aboutScreen.classList.remove('open');methodScreen.classList.remove('open','exploring');casesScreen.classList.remove('open');contactScreen.classList.remove('open');closeCase();selectMethodStep(null);page.classList.remove('panel-open');panel.setAttribute('aria-hidden','true');aboutScreen.setAttribute('aria-hidden','true');methodScreen.setAttribute('aria-hidden','true');casesScreen.setAttribute('aria-hidden','true');contactScreen.setAttribute('aria-hidden','true');navButtons.forEach(button=>{button.classList.remove('active');button.setAttribute('aria-expanded','false');}); }
+      function closeMobileNav(){page.classList.remove('nav-open');mobileMenuToggle.setAttribute('aria-expanded','false');mobileMenuToggle.textContent='Menu';}
+      function closePanel(){ closeMobileNav();panel.classList.remove('open');aboutScreen.classList.remove('open');methodScreen.classList.remove('open','exploring');casesScreen.classList.remove('open');contactScreen.classList.remove('open');closeCase();selectMethodStep(null);page.classList.remove('panel-open');panel.setAttribute('aria-hidden','true');aboutScreen.setAttribute('aria-hidden','true');methodScreen.setAttribute('aria-hidden','true');casesScreen.setAttribute('aria-hidden','true');contactScreen.setAttribute('aria-hidden','true');navButtons.forEach(button=>{button.classList.remove('active');button.setAttribute('aria-expanded','false');}); }
       function openPanel(key){ const active=document.querySelector(`.nav button[data-section="${key}"]`);if(key==='about'){const alreadyOpen=active.classList.contains('active')&&aboutScreen.classList.contains('open');closePanel();if(alreadyOpen)return;aboutItems.forEach(entry=>{entry.classList.remove('active');entry.querySelector('.about-trigger').setAttribute('aria-expanded','false');entry.querySelector('.about-hint').textContent='Open';});aboutScreen.scrollTop=0;active.classList.add('active');active.setAttribute('aria-expanded','true');active.setAttribute('aria-controls','about-screen');aboutScreen.classList.add('open');aboutScreen.setAttribute('aria-hidden','false');page.classList.add('panel-open');return;}if(key==='method'){const alreadyOpen=active.classList.contains('active')&&methodScreen.classList.contains('open');closePanel();if(alreadyOpen)return;selectMethodStep(null);methodScreen.scrollTop=0;active.classList.add('active');active.setAttribute('aria-expanded','true');active.setAttribute('aria-controls','method-screen');methodScreen.classList.add('open');methodScreen.setAttribute('aria-hidden','false');page.classList.add('panel-open');return;}if(key==='cases'){const alreadyOpen=active.classList.contains('active')&&casesScreen.classList.contains('open');closePanel();if(alreadyOpen)return;casesScreen.scrollTop=0;active.classList.add('active');active.setAttribute('aria-expanded','true');active.setAttribute('aria-controls','cases-screen');casesScreen.classList.add('open');casesScreen.setAttribute('aria-hidden','false');page.classList.add('panel-open');return;}if(key==='contact'){const alreadyOpen=active.classList.contains('active')&&contactScreen.classList.contains('open');closePanel();if(alreadyOpen)return;resetContact();contactScreen.scrollTop=0;active.classList.add('active');active.setAttribute('aria-expanded','true');active.setAttribute('aria-controls','contact-screen');contactScreen.classList.add('open');contactScreen.setAttribute('aria-hidden','false');page.classList.add('panel-open');return;}const data=sections[key];if(!data)return;const alreadyOpen=active.classList.contains('active')&&panel.classList.contains('open');if(alreadyOpen){closePanel();return;}closePanel();panelIndex.textContent=data.index;panelTitle.textContent=data.title;panelText.textContent=data.text;panelDetails.classList.remove('grouped');panelDetails.innerHTML=data.items.map(item=>`<div class="panel-item"><span>${item[0]}</span><strong>${item[1]}</strong></div>`).join('');active.classList.add('active');active.setAttribute('aria-expanded','true');active.setAttribute('aria-controls','info-panel');panel.classList.add('open');page.classList.add('panel-open');panel.setAttribute('aria-hidden','false'); }
       navButtons.forEach(button=>button.addEventListener('click',()=>openPanel(button.dataset.section)));
+      mobileMenuToggle.addEventListener('click',()=>{const open=page.classList.toggle('nav-open');mobileMenuToggle.setAttribute('aria-expanded',String(open));mobileMenuToggle.textContent=open?'Close':'Menu';});
       document.getElementById('panel-close').addEventListener('click',closePanel);
       document.getElementById('about-close').addEventListener('click',closePanel);
       document.getElementById('method-close').addEventListener('click',closePanel);
